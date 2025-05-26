@@ -1,1 +1,167 @@
-/* Add your CSS here */
+/* Import Roboto font from Google Fonts */
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
+
+/* Set up base styles */
+body {
+  font-family: 'Roboto', Arial, sans-serif; /* Use Roboto font */
+  background-color: #f5f7fa; /* Light gray background */
+  color: #222; /* Dark text for readability */
+  margin: 0;
+  padding: 0;
+}
+
+/* Header styles */
+header {
+  background-color: #0068b5; /* Intel blue */
+  color: #fff;
+  padding: 40px 0 30px 0;
+  text-align: center;
+  position: relative; /* Needed for positioning the logo */
+}
+
+/* Move the logo to the top left corner */
+header img {
+  width: 120px; /* Adjust logo size */
+  margin-bottom: 0;
+  position: absolute; /* Position the logo absolutely */
+  top: 30px; /* Space from the top */
+  left: 30px; /* Space from the left */
+}
+
+/* Center the headline and description under the logo */
+header div {
+  display: flex;              /* Use flexbox for centering */
+  flex-direction: column;     /* Stack items vertically */
+  align-items: center;        /* Center items horizontally */
+  justify-content: center;    /* Center items vertically */
+  margin-top: 0;              /* No extra margin needed */
+}
+
+/* Center the headline and description text */
+header h1, header p {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 500px;
+  text-align: center; /* Center the text itself */
+}
+
+header h1 {
+  margin: 10px 0 10px 0;
+  font-size: 2.2em;
+  font-weight: 700;
+  position: relative; /* Needed for the line */
+}
+
+/* The line under the headline */
+header h1::after {
+  content: "";
+  display: block;
+  margin: 16px auto 0 auto; /* Space above the line */
+  width: 60px; /* Line length */
+  height: 3px; /* Line thickness */
+  background: #7ec6f8; /* Light blue color */
+  border-radius: 2px; /* Rounded ends */
+}
+
+header p {
+  font-size: 1.1em;
+  margin-bottom: 0;
+}
+
+/* Timeline section */
+section {
+  display: flex; /* Use flexbox to arrange cards in a row */
+  flex-direction: row; /* Make the timeline horizontal */
+  flex-wrap: nowrap; /* Prevent cards from wrapping to the next line */
+  justify-content: flex-start; /* Start cards at the left edge */
+  align-items: flex-start; /* Align cards to the top */
+  gap: 24px; /* Space between cards */
+  padding: 40px 10px 20px 10px;
+  overflow-x: auto; /* Allow horizontal scrolling if needed */
+  scroll-behavior: smooth; /* Smooth scrolling for user experience */
+  scroll-snap-type: x mandatory; /* Enable scroll snap on the x (horizontal) axis */
+}
+
+/* Make each card snap to the start when scrolling */
+section > div {
+  background: #fff; /* White card */
+  border-radius: 18px; /* Rounded corners */
+  box-shadow: 0 2px 12px rgba(0, 104, 181, 0.08); /* Subtle blue shadow */
+  padding: 24px 18px;
+  width: 270px;
+  min-width: 270px; /* Make sure each card stays the same width */
+  transition: transform 0.2s, box-shadow 0.2s;
+  margin-bottom: 16px;
+  scroll-snap-align: start; /* Snap each card to the start of the scroll area */
+  /* No margin-right needed because gap handles spacing */
+}
+
+section h2 {
+  color: #0068b5; /* Intel blue for year */
+  margin: 0 0 6px 0;
+  font-size: 1.2em;
+}
+
+section h3 {
+  margin: 0 0 10px 0;
+  font-size: 1.05em;
+  color: #222;
+}
+
+section img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+section p {
+  font-size: 0.98em;
+  color: #444;
+}
+
+/* Make the details (the <p> tag) hidden by default on timeline cards */
+section > div p {
+  display: none; /* Hide details by default */
+  transition: color 0.2s; /* Smooth color transition for details */
+}
+
+/* Sleek hover effect for timeline cards */
+section > div:hover {
+  background: #f0f6fa; /* Light gray background on hover */
+  box-shadow: 0 4px 18px rgba(0, 104, 181, 0.15); /* Slightly stronger shadow */
+  cursor: pointer; /* Show pointer cursor */
+}
+
+/* Show the details in Intel blue when the user hovers over the card */
+section > div:hover p {
+  display: block; /* Show details on hover */
+  margin-top: 10px; /* Add a little space above the details */
+  color: #0068b5; /* Intel blue for details */
+}
+
+/* Footer note */
+body > p {
+  text-align: center;
+  color: #0068b5;
+  font-size: 1em;
+  margin: 30px 0 20px 0;
+  margin-top: 40px; /* Add a little space below the timeline for the footer note */
+}
+
+/* Responsive: Stack timeline vertically on small screens */
+@media (max-width: 700px) {
+  section {
+    flex-direction: column; /* Stack cards vertically */
+    gap: 18px;
+    overflow-x: visible; /* No horizontal scroll needed */
+    scroll-snap-type: none; /* Disable scroll snap */
+    align-items: center; /* Center cards */
+  }
+  section > div {
+    width: 95vw;      /* Make cards fit the screen width */
+    min-width: 0;
+    max-width: 400px; /* Limit max width for readability */
+    margin-bottom: 0;
+    scroll-snap-align: none;
+  }
+}

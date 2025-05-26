@@ -139,5 +139,119 @@
     </div>
   </section>
   <p>Scroll to view timeline | Hover over cards to learn more!</p>
+
+  <style>
+    /* Timeline section */
+    section {
+      display: flex; /* Arrange cards in a row */
+      flex-direction: row; /* Horizontal by default */
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 24px;
+      padding: 40px 10px 20px 10px;
+      overflow-x: auto; /* Allow horizontal scrolling */
+      scroll-behavior: smooth; /* Smooth scrolling */
+      scroll-snap-type: x mandatory; /* Enable horizontal scroll snapping */
+    }
+
+    /* Make each card snap to the start of the scroll area */
+    section > div {
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 2px 12px rgba(0, 104, 181, 0.08);
+      padding: 24px 18px;
+      width: 270px;
+      min-width: 270px;
+      transition: transform 0.2s, box-shadow 0.2s, background 0.3s;
+      margin-bottom: 16px;
+      scroll-snap-align: start; /* Snap each card to the start */
+      position: relative; /* Needed for hover effect */
+      overflow: hidden;
+    }
+
+    /* Make the details (the <p> tag) hidden by default on timeline cards */
+    section > div p {
+      display: none; /* Hide details by default */
+    }
+
+    /* By default, show year, title, and image */
+    section > div h2,
+    section > div h3,
+    section > div img {
+      display: block;
+    }
+
+    /* When hovering, hide year, title, and image */
+    section > div:hover h2,
+    section > div:hover h3,
+    section > div:hover img {
+      display: none;
+    }
+
+    /* When hovering, show the details in Intel blue */
+    section > div:hover p {
+      display: block; /* Show details */
+      color: #0068b5; /* Intel blue */
+      font-size: 1.05em;
+      text-align: center;
+      margin: 0;
+      position: absolute; /* Center the text in the card */
+      top: 50%;
+      left: 50%;
+      width: 90%;
+      transform: translate(-50%, -50%);
+      opacity: 1;
+      transition: opacity 0.3s;
+    }
+
+    /* Make the card background solid light gray and position text over it */
+    section > div {
+      position: relative; /* Needed for absolute positioning of details */
+      overflow: hidden;   /* Prevent text from spilling out */
+      min-height: 270px;  /* Make sure card is tall enough */
+      transition: background 0.3s, box-shadow 0.3s; /* Smooth background and shadow transition */
+    }
+
+    /* Solid light gray background on hover */
+    section > div:hover {
+      background: #f0f6fa; /* Solid light gray */
+      box-shadow: 0 4px 18px rgba(0, 104, 181, 0.15);
+      cursor: pointer;
+    }
+
+    /* Make the Intel logo shrink as the browser gets smaller */
+    header img {
+      width: 120px;        /* Default size */
+      margin-bottom: 0;
+      position: absolute;
+      top: 30px;
+      left: 30px;
+      transition: width 0.3s; /* Smoothly resize the logo */
+    }
+
+    /* When the screen is 700px wide or less, make the logo smaller */
+    @media (max-width: 700px) {
+      header img {
+        width: 80px;      /* Smaller logo for small screens */
+        top: 16px;        /* Adjust position for smaller header */
+        left: 16px;
+      }
+      section {
+        flex-direction: column; /* Stack cards vertically */
+        gap: 18px;
+        overflow-x: visible; /* No horizontal scroll needed */
+        scroll-snap-type: none; /* Disable scroll snap */
+        align-items: center; /* Center cards */
+      }
+      section > div {
+        width: 95vw;      /* Make cards fit the screen width */
+        min-width: 0;
+        max-width: 400px; /* Limit max width for readability */
+        margin-bottom: 0;
+        scroll-snap-align: none;
+      }
+    }
+  </style>
 </body>
 </html>
